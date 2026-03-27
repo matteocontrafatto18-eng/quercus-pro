@@ -48,18 +48,32 @@ export default function AnagrafichePage() {
 
   // Montatori handlers
   function handleSaveMontatore() {
-    if (!formM.nome.trim()) return;
-    if (editMId) {
-      updateMontatore({ id: editMId, ...formM });
-    } else {
-      addMontatore({ id: uid(), ...formM });
-    }
-    setMontatori(getMontatori());
-    setFormM({ ...EMPTY_MONTATORE });
-    setEditMId(null);
-    setShowFormM(false);
-    flashSaved();
+  // Se il nome è vuoto o contiene solo spazi, fermati
+  if (!formM.nome.trim()) return;
+
+  // Se esiste un id di modifica, aggiorna un montatore esistente
+  if (editMId) {
+    updateMontatore({ id: editMId, ...formM });
+  } else {
+    // Altrimenti crea un nuovo montatore con id unico
+    addMontatore({ id: uid(), ...formM });
   }
+
+  // Rilegge la lista aggiornata dallo storage e aggiorna React
+  setMontatori(getMontatori());
+
+  // Reset del form ai valori iniziali
+  setFormM({ ...EMPTY_MONTATORE });
+
+  // Esce dalla modalità modifica
+  setEditMId(null);
+
+  // Chiude il form
+  setShowFormM(false);
+
+  // Mostra il messaggio "Salvato!"
+  flashSaved();
+}
 
   function handleEditMontatore(m: Montatore) {
     setFormM({ nome: m.nome, cognome: m.cognome, ditta: m.ditta, tariffaOraria: m.tariffaOraria, tariffaViaggio: m.tariffaViaggio });

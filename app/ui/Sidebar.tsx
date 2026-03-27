@@ -22,6 +22,7 @@ const navItems = [
     section: 'Export',
     links: [
       { href: '/barth', label: 'File BARTH' },
+      {href: '/note', label: 'Note'},
     ],
   },
 ];
