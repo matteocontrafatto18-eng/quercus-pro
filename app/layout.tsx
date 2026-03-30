@@ -1,5 +1,5 @@
 import "./globals.css";
-import Sidebar from "@/app/ui/Sidebar";
+import ClientLayout from "@/app/ui/ClientLayout";
 
 export default function RootLayout({
   children,
@@ -9,10 +9,7 @@ export default function RootLayout({
   return (
     <html lang="it">
       <body>
-        <div className="app-shell">
-          <Sidebar />
-          <main className="main-content">{children}</main>
-        </div>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const navItems = [
   {
@@ -29,6 +29,7 @@ const navItems = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <aside className="sidebar">
@@ -58,7 +59,7 @@ export default function Sidebar() {
         <div className="account-avatar">UQ</div>
         <div className="account-info">
           <span className="account-name">Account</span>
-          <button className="account-logout">Esci</button>
+          <button className="account-logout" onClick={() => router.push('/login')}>Esci</button>
         </div>
       </div>
     </aside>
